@@ -8,7 +8,7 @@ Plain HTML and CSS. No build step, no external fonts or scripts, so the site set
 - `relationships/index.html`: polyamory coaching page (valentinascipione.com/relationships)
 - `impressum.html`, `datenschutz.html`: legal pages, paste the e-recht24 generator text in
 - `styles.css`: shared styles
-- `assets/valentina.jpg`: your photo (replace the placeholder, keep the file name, square crop works best)
+- `assets/valentina-portrait.jpg`: your photo (4:5 portrait, used large next to "My story" and small next to your name)
 - `CNAME`: tells GitHub Pages which domain to use
 
 ## Before publishing, replace these placeholders
