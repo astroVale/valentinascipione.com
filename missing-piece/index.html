@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Don't take this lost feeling into January | Valentina Scipione</title>
+  <meta name="description" content="A short check to work out what needs to change in your work and life, and choose where to start before the new year.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .step-label { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--plum); margin: 0 0 8px; }
+    .imagine { background: #fff; border-radius: var(--radius); padding: 24px 26px; font-family: var(--serif); font-size: 1.2rem; line-height: 1.6; color: var(--plum-dark); box-shadow: 0 4px 18px rgba(74, 24, 48, 0.06); }
+    .ticks { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+    .ticks label { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 2px solid transparent; border-radius: var(--radius); padding: 14px 16px; cursor: pointer; box-shadow: 0 2px 10px rgba(74, 24, 48, 0.05); transition: border-color 0.15s, background 0.15s; }
+    .ticks input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--plum); flex-shrink: 0; }
+    .ticks label:has(input:checked) { border-color: var(--plum); background: #fdf3f4; }
+    .hint { font-size: 0.95rem; color: var(--muted); }
+    .hidden { display: none; }
+    .piece-name { font-family: var(--serif); font-size: clamp(2rem, 6vw, 2.6rem); color: var(--plum); margin: 0 0 12px; }
+    .questions { counter-reset: q; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .questions li { counter-increment: q; background: #fff; border-radius: var(--radius); padding: 16px 18px 16px 56px; position: relative; }
+    .questions li::before { content: counter(q); position: absolute; left: 18px; top: 14px; font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--plum); }
+    .letter { background: #fffdf9; border: 1px solid var(--line); border-radius: 6px; padding: 32px 30px; font-family: var(--serif); font-size: 1.12rem; line-height: 1.7; box-shadow: 0 10px 30px rgba(74, 24, 48, 0.08); }
+    .letter .salute { font-size: 1.3rem; color: var(--plum-dark); margin-bottom: 18px; }
+    .letter .sign { margin-top: 22px; }
+    .options { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; font-family: var(--sans); font-size: 1rem; }
+    .options label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; cursor: pointer; }
+    .options label:has(input:checked) { background: var(--blush); }
+    .options input { width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--plum); flex-shrink: 0; }
+    .tie-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .button.secondary { background: #fff; color: var(--plum); border: 2px solid var(--plum); }
+    .button.secondary:hover { background: var(--blush); color: var(--plum-dark); }
+    button.button { border: none; font: inherit; font-weight: 600; cursor: pointer; }
+    .calendar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 14px; }
+    .calendar input { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">
+        <img src="../assets/valentina-portrait.jpg" alt="" width="64" height="64">
+        <div>
+          <p class="name">Valentina Scipione</p>
+          <p class="creds"><span>ICF Associate Certified Coach (ACC)</span></p>
+        </div>
+      </div>
+      <h1>Don't take this lost feeling into January</h1>
+      <p class="lead">A short check to help you work out what needs to change in work and life, and choose where to start before the year ends.</p>
+      <p class="format">About 15 minutes. Nothing to write, nothing is saved.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="wrap">
+      <p class="step-label">Step 1 &middot; Imagine</p>
+      <h2>Take one minute before you start</h2>
+      <p class="imagine">It's a Monday morning in December 2027. You wake up, and you're actually looking forward to the week. What's different? What are you doing, who's around you, how do you feel? Hold on to that picture.</p>
+    </section>
+
+    <section class="wrap" style="padding-top: 8px;">
+      <p class="step-label">Step 2 &middot; Tick</p>
+      <h2>Which of these sound like you?</h2>
+      <p class="hint">Tap every statement that feels true right now. Go with your first reaction.</p>
+      <ul class="ticks" id="ticks">
+        <li><label><input type="checkbox" data-piece="growth"> My role keeps changing, and I'm unsure where I fit anymore.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> I keep saying "when things calm down", and they never do.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> By Wednesday, I'm already counting the days to the weekend.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> There's something I've wanted to say at work for months.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> I do my job well, and I'm no longer sure what it's for.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> There's a hobby or passion I haven't touched in a long time.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> Things I used to do easily now take me forever to start.</label></li>
+        <li><label><input type="checkbox" data-piece="growth"> AI is changing my work faster than I'm figuring out what I want from it.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> I can't remember the last time work made me proud.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> I say yes to things I'd like to say no to.</label></li>
+      </ul>
+      <button class="button" type="button" id="show">Show me what's missing</button>
+      <p class="hint hidden" id="none">Tick at least one statement first.</p>
+
+      <div class="hidden" id="tie">
+        <p style="margin-top: 24px;">Two things came up for you. Which one made you nod?</p>
+        <div class="tie-buttons" id="tie-buttons"></div>
+      </div>
+    </section>
+
+    <div id="result" class="hidden">
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Your result</p>
+        <p class="piece-name" id="piece-name"></p>
+        <p id="piece-meaning"></p>
+      </section>
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Step 3 &middot; Reflect</p>
+        <h2>Five questions to sit with</h2>
+        <p class="hint">Take a minute with each one. There's no need to write anything down.</p>
+        <ol class="questions">
+          <li>When does this feeling show up most in my week, and what does it make me want to do?</li>
+          <li>If this came back, what would it give me that really matters to me?</li>
+          <li>What does my mind keep telling me about why now isn't the right time?</li>
+          <li>What small discomfort would I be willing to feel to move towards it, like an awkward conversation or an evening without catching up on work?</li>
+          <li>What's the smallest step I could take before the year ends?</li>
+        </ol>
+      </section>
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Step 4 &middot; Your letter</p>
+        <h2>A letter from next December</h2>
+        <div class="letter">
+          <p class="salute">Dear you,</p>
+          <p id="letter-body"></p>
+          <p>It all started with something small, in December 2026, when I&hellip;</p>
+          <ul class="options" id="options"></ul>
+          <p class="sign">With love,<br>You, one year from now</p>
+        </div>
+      </section>
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Step 5 &middot; Make it real</p>
+        <h2>Put your step in your calendar</h2>
+        <p>Pick the step that feels right in your letter, choose a day before the year ends, and add it to your calendar. Small is perfect. This is where January starts.</p>
+        <div class="calendar">
+          <input type="date" id="date" aria-label="Date for your first step">
+          <button class="button" type="button" id="ics">Add to my calendar</button>
+        </div>
+        <p class="hint hidden" id="pick-first">Choose one step in your letter first.</p>
+      </section>
+
+      <div class="wrap">
+        <section class="cta">
+          <h2>Want to explore what came up?</h2>
+          <p>If something in your letter stayed with you, I'd love to hear about it. The first chat is free, takes 30 minutes, and is a relaxed conversation about where you are and what you'd like next.</p>
+          <a class="button" href="https://cal.com/valentinascipione/free-chat">Book a free 30 minute chat</a>
+        </section>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      &copy; 2026 Valentina Scipione &middot; <a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    // Everything runs in the browser. Nothing is sent or stored.
+    var PIECES = {
+      energy: {
+        name: "Energy",
+        meaning: "Your tank is running low, and everything else feels harder because of it. Motivation, ideas and patience all need fuel, and right now there's very little left at the end of the day.",
+        letter: "This year, I got my energy back. Most mornings I wake up with enough in the tank for work and for me. Evenings feel like evenings again, and the things that used to take me forever now simply get done.",
+        steps: [
+          "chose one evening a week with no screens after 8pm",
+          "shortened or cancelled one meeting in my calendar",
+          "took a real lunch break, away from my desk",
+          "booked one day off just for me"
+        ]
+      },
+      purpose: {
+        name: "Purpose",
+        meaning: "You're still doing the work, and the reason behind it has faded. Without it, even easy tasks feel heavy, and motivation is hard to find.",
+        letter: "This year, I found my why again. I know what my work is for and who it helps. Some Mondays still feel like Mondays, and most weeks I can point to something that made me proud.",
+        steps: [
+          "had a coffee with someone whose work I admire, and asked what keeps them going",
+          "asked my manager what difference our team made this year",
+          "spent one hour on an idea I'd been curious about",
+          "thanked someone whose work helped me"
+        ]
+      },
+      growth: {
+        name: "Growth",
+        meaning: "The ground is moving under your feet. AI and reorganisations keep changing your role, and you haven't had the chance to decide what you want from it yet.",
+        letter: "This year, I decided for myself where I wanted to grow. AI kept changing things, and instead of feeling left behind, I chose what to keep, what to learn and where I wanted to go next.",
+        steps: [
+          "tried one AI tool on a task I disliked, and noticed how it felt",
+          "asked someone a few steps ahead of me how they're handling the change",
+          "gave 30 minutes to a skill I was curious about",
+          "looked at my LinkedIn profile and asked: is this still who I want to be?"
+        ]
+      },
+      voice: {
+        name: "Voice",
+        meaning: "You have more to say than you're saying. Over time, saying yes to everything can make your work feel like it belongs to someone else.",
+        letter: "This year, I found my voice again. I said the thing I'd been holding back for months, and I said no when I meant no. My work feels like mine again.",
+        steps: [
+          "said no to one request, kindly and clearly",
+          "booked a 1:1 with my manager to talk about next year",
+          "turned off work notifications after a set time each evening",
+          "practised the conversation I'd been avoiding, out loud, with a friend"
+        ]
+      },
+      life: {
+        name: "Life",
+        meaning: "Work has slowly taken over the space where the rest of your life used to be: the hobbies, the people, the plans for \"later\".",
+        letter: "This year, I got my life back. Slowly at first: one evening, then another. I picked up the thing I used to love, and the people around me now get the version of me with energy left at the end of the day.",
+        steps: [
+          "put one thing I love back in my calendar, even for 30 minutes",
+          "called someone I'd been meaning to call",
+          "planned one thing for the holidays that had nothing to do with work",
+          "chose a time when work stopped each day, and kept to it"
+        ]
+      }
+    };
+
+    function $(id) { return document.getElementById(id); }
+
+    function showResult(key) {
+      var p = PIECES[key];
+      $("tie").classList.add("hidden");
+      $("piece-name").textContent = p.name;
+      $("piece-meaning").textContent = p.meaning;
+      $("letter-body").textContent = p.letter;
+      var ul = $("options");
+      ul.innerHTML = "";
+      p.steps.forEach(function (s) {
+        var li = document.createElement("li");
+        var label = document.createElement("label");
+        var input = document.createElement("input");
+        input.type = "radio"; input.name = "step"; input.value = s;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(" " + s));
+        li.appendChild(label);
+        ul.appendChild(li);
+      });
+      $("result").classList.remove("hidden");
+      $("piece-name").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    $("show").addEventListener("click", function () {
+      var counts = {};
+      var boxes = document.querySelectorAll("#ticks input:checked");
+      $("none").classList.toggle("hidden", boxes.length > 0);
+      if (!boxes.length) return;
+      boxes.forEach(function (b) { counts[b.dataset.piece] = (counts[b.dataset.piece] || 0) + 1; });
+      var max = Math.max.apply(null, Object.keys(counts).map(function (k) { return counts[k]; }));
+      var top = Object.keys(counts).filter(function (k) { return counts[k] === max; });
+      if (top.length === 1) { showResult(top[0]); return; }
+      $("result").classList.add("hidden");
+      var wrap = $("tie-buttons");
+      wrap.innerHTML = "";
+      top.forEach(function (k) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "button secondary"; b.textContent = PIECES[k].name;
+        b.addEventListener("click", function () { showResult(k); });
+        wrap.appendChild(b);
+      });
+      $("tie").classList.remove("hidden");
+    });
+
+    (function () {
+      var d = new Date(); d.setDate(d.getDate() + 1);
+      $("date").value = d.toISOString().slice(0, 10);
+    })();
+
+    $("ics").addEventListener("click", function () {
+      var chosen = document.querySelector("#options input:checked");
+      $("pick-first").classList.toggle("hidden", !!chosen);
+      if (!chosen) return;
+      var day = ($("date").value || "").replace(/-/g, "");
+      if (!day) return;
+      var text = "My first step: " + chosen.value.charAt(0).toUpperCase() + chosen.value.slice(1);
+      var ics = [
+        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//valentinascipione.com//first step//EN",
+        "BEGIN:VEVENT",
+        "UID:" + Date.now() + "@valentinascipione.com",
+        "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z",
+        "DTSTART:" + day + "T190000",
+        "DTEND:" + day + "T193000",
+        "SUMMARY:" + text,
+        "DESCRIPTION:Small is perfect. This is where January starts.",
+        "END:VEVENT", "END:VCALENDAR"
+      ].join("\r\n");
+      var a = document.createElement("a");
+      a.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+      a.download = "my-first-step.ics";
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  </script>
+</body>
+</html>
