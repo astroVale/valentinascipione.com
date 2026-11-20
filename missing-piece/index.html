@@ -55,32 +55,40 @@
   <main>
 
     <section class="wrap">
-      <p class="step-label">Step 1 &middot; Imagine</p>
+      <p class="step-label">Step 1 &middot; Picture next year</p>
       <h2>Take one minute before you start</h2>
-      <p class="imagine">It's a Monday morning in December 2027. You wake up, and you're actually looking forward to the week. What's different? What are you doing, who's around you, how do you feel? Hold on to that picture.</p>
+      <p class="imagine">Imagine it's a Monday morning one year from now, in December 2027. You wake up, and you're actually looking forward to the week ahead. What's different? What are you doing, who's around you, how do you feel? Keep that picture in mind. We'll come back to it.</p>
     </section>
 
     <section class="wrap" style="padding-top: 8px;">
-      <p class="step-label">Step 2 &middot; Tick</p>
-      <h2>Which of these sound like you?</h2>
-      <p class="hint">Tap every statement that feels true right now. Go with your first reaction.</p>
+      <p class="step-label">Step 2 &middot; Notice where you are today</p>
+      <h2>Now come back to today</h2>
+      <p class="hint">Which of these feel true for you right now? Select every statement that sounds like you, and go with your first reaction.</p>
       <ul class="ticks" id="ticks">
-        <li><label><input type="checkbox" data-piece="growth"> My role keeps changing, and I'm unsure where I fit anymore.</label></li>
+        <li><label><input type="checkbox" data-piece="growth"> My role keeps changing, and I'm not sure where I fit anymore.</label></li>
         <li><label><input type="checkbox" data-piece="life"> I keep saying "when things calm down", and they never do.</label></li>
-        <li><label><input type="checkbox" data-piece="energy"> By Wednesday, I'm already counting the days to the weekend.</label></li>
-        <li><label><input type="checkbox" data-piece="voice"> There's something I've wanted to say at work for months.</label></li>
-        <li><label><input type="checkbox" data-piece="purpose"> I do my job well, and I'm no longer sure what it's for.</label></li>
-        <li><label><input type="checkbox" data-piece="life"> There's a hobby or passion I haven't touched in a long time.</label></li>
-        <li><label><input type="checkbox" data-piece="energy"> Things I used to do easily now take me forever to start.</label></li>
-        <li><label><input type="checkbox" data-piece="growth"> AI is changing my work faster than I'm figuring out what I want from it.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> By Monday, I'm already counting the days to the weekend.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> There is something I have wanted to say at work for months.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> I do my job well, and I'm no longer sure what for.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I'm still waiting for the promotion I was told was coming.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> Between work and family, there is no time left that is just mine.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> Even easy things now take me forever to start.</label></li>
+        <li><label><input type="checkbox" data-piece="growth"> AI is changing my work faster than I can figure out what I want from it.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> I say yes to things I would like to say no to.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I do more than my role asks, and it often goes unnoticed.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> The next step up the ladder doesn't feel worth the climb anymore.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> I enjoy my work, but the workload and expectations keep growing.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> There is a hobby or passion I have not touched in a long time.</label></li>
+        <li><label><input type="checkbox" data-piece="growth"> Part of me is ready to explore something new, and I keep putting it off.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I feel overlooked, or stuck in a role I have outgrown.</label></li>
         <li><label><input type="checkbox" data-piece="purpose"> I can't remember the last time work made me proud.</label></li>
-        <li><label><input type="checkbox" data-piece="voice"> I say yes to things I'd like to say no to.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> Decisions about my work keep being made without me.</label></li>
       </ul>
       <button class="button" type="button" id="show">Show me what's missing</button>
-      <p class="hint hidden" id="none">Tick at least one statement first.</p>
+      <p class="hint hidden" id="none">Select at least one statement first.</p>
 
       <div class="hidden" id="tie">
-        <p style="margin-top: 24px;">Two things came up for you. Which one made you nod?</p>
+        <p style="margin-top: 24px;">More than one thing came up for you. Which one made you nod?</p>
         <div class="tie-buttons" id="tie-buttons"></div>
       </div>
     </section>
@@ -91,6 +99,7 @@
         <p class="step-label">Your result</p>
         <p class="piece-name" id="piece-name"></p>
         <p id="piece-meaning"></p>
+        <p class="hint">This is a reflection tool, inspired by research on what keeps people motivated and well at work.</p>
       </section>
 
       <section class="wrap" style="padding-top: 8px;">
@@ -108,7 +117,8 @@
 
       <section class="wrap" style="padding-top: 8px;">
         <p class="step-label">Step 4 &middot; Your letter</p>
-        <h2>A letter from next December</h2>
+        <h2>A letter from future You</h2>
+        <p class="hint">Remember the picture from the start? This letter is from the person in it.</p>
         <div class="letter">
           <p class="salute">Dear you,</p>
           <p id="letter-body"></p>
@@ -152,57 +162,68 @@
     var PIECES = {
       energy: {
         name: "Energy",
-        meaning: "Your tank is running low, and everything else feels harder because of it. Motivation, ideas and patience all need fuel, and right now there's very little left at the end of the day.",
+        meaning: "Your work is asking for more energy than it gives back, and there is little time to recover. When the tank is low, motivation, ideas and patience all fade with it.",
         letter: "This year, I got my energy back. Most mornings I wake up with enough in the tank for work and for me. Evenings feel like evenings again, and the things that used to take me forever now simply get done.",
         steps: [
-          "chose one evening a week with no screens after 8pm",
+          "chose one evening a week with no work and no screens after 8pm",
           "shortened or cancelled one meeting in my calendar",
           "took a real lunch break, away from my desk",
           "booked one day off just for me"
         ]
       },
-      purpose: {
-        name: "Purpose",
-        meaning: "You're still doing the work, and the reason behind it has faded. Without it, even easy tasks feel heavy, and motivation is hard to find.",
-        letter: "This year, I found my why again. I know what my work is for and who it helps. Some Mondays still feel like Mondays, and most weeks I can point to something that made me proud.",
-        steps: [
-          "had a coffee with someone whose work I admire, and asked what keeps them going",
-          "asked my manager what difference our team made this year",
-          "spent one hour on an idea I'd been curious about",
-          "thanked someone whose work helped me"
-        ]
-      },
-      growth: {
-        name: "Growth",
-        meaning: "The ground is moving under your feet. AI and reorganisations keep changing your role, and you haven't had the chance to decide what you want from it yet.",
-        letter: "This year, I decided for myself where I wanted to grow. AI kept changing things, and instead of feeling left behind, I chose what to keep, what to learn and where I wanted to go next.",
-        steps: [
-          "tried one AI tool on a task I disliked, and noticed how it felt",
-          "asked someone a few steps ahead of me how they're handling the change",
-          "gave 30 minutes to a skill I was curious about",
-          "looked at my LinkedIn profile and asked: is this still who I want to be?"
-        ]
-      },
       voice: {
         name: "Voice",
-        meaning: "You have more to say than you're saying. Over time, saying yes to everything can make your work feel like it belongs to someone else.",
-        letter: "This year, I found my voice again. I said the thing I'd been holding back for months, and I said no when I meant no. My work feels like mine again.",
+        meaning: "You have more to say about your work than you are saying. When decisions keep happening around you, work slowly starts to feel like it belongs to someone else.",
+        letter: "This year, I found my voice again. I said the thing I had been holding back for months, and I said no when I meant no. My work feels like mine again.",
         steps: [
           "said no to one request, kindly and clearly",
           "booked a 1:1 with my manager to talk about next year",
           "turned off work notifications after a set time each evening",
-          "practised the conversation I'd been avoiding, out loud, with a friend"
+          "practised the conversation I had been avoiding, out loud, with a friend"
+        ]
+      },
+      growth: {
+        name: "Growth",
+        meaning: "This is about your growth at work. The ground is moving under your feet: AI and constant change keep reshaping your role, and you have not had the chance yet to decide what you want from it.",
+        letter: "This year, I decided for myself where I wanted to grow. AI kept changing things, and instead of feeling left behind, I chose what to keep, what to learn and where I wanted to go next.",
+        steps: [
+          "built something small and fun with AI, just for me, like a travel planner or a reading tracker",
+          "gave 30 minutes to a skill I was curious about, just for the joy of it",
+          "asked someone a few steps ahead of me how they handle the change",
+          "named the three parts of my work I want to keep, whatever happens"
+        ]
+      },
+      recognition: {
+        name: "Recognition",
+        meaning: "You are giving a lot, and too little of it is being seen. Waiting to be noticed takes a lot of energy, and your work deserves to be visible.",
+        letter: "This year, people saw what I bring. I started making my work visible and asking for what I wanted. Whatever the answer, I knew my worth.",
+        steps: [
+          "asked my manager what I need to show to reach the next level",
+          "shared one win from this year with my team or my manager",
+          "asked two colleagues what they see as my strengths",
+          "added this year's achievements to my CV or LinkedIn"
+        ]
+      },
+      purpose: {
+        name: "Purpose",
+        meaning: "You are still doing the work, and the reason behind it has faded. Without a clear why, even easy tasks feel heavy, and motivation is hard to find.",
+        letter: "This year, I found my why again. I know what my work is for and who it helps. Some Mondays still feel like Mondays, but most weeks I can point to something that made me proud.",
+        steps: [
+          "had a coffee with someone whose work I admire, and asked what keeps them going",
+          "asked someone who uses my work what difference it makes to them",
+          "spent one hour on an idea I had been curious about",
+          "thought back to my three proudest moments at work and noticed what they had in common"
         ]
       },
       life: {
         name: "Life",
-        meaning: "Work has slowly taken over the space where the rest of your life used to be: the hobbies, the people, the plans for \"later\".",
-        letter: "This year, I got my life back. Slowly at first: one evening, then another. I picked up the thing I used to love, and the people around me now get the version of me with energy left at the end of the day.",
+        meaning: "Between work and looking after everyone and everything else, the space that is just yours has quietly disappeared: the hobbies, the friends, the time to breathe. Your priorities have changed, and your days have not caught up yet.",
+        letter: "This year, I got my life back. Slowly at first: one evening, then another. I picked up the thing I used to love, I have time that is just mine again, and the people around me get the version of me with energy left at the end of the day.",
         steps: [
           "put one thing I love back in my calendar, even for 30 minutes",
-          "called someone I'd been meaning to call",
-          "planned one thing for the holidays that had nothing to do with work",
-          "chose a time when work stopped each day, and kept to it"
+          "asked for help with one thing, so I could have an hour just for myself",
+          "planned one thing for the holidays that has nothing to do with work",
+          "chose a time when work stops each day, and kept to it"
         ]
       }
     };
