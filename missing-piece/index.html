@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Don't take this lost feeling into January | Valentina Scipione</title>
-  <meta name="description" content="A short reflection to help you work out what needs to change in your work and life, and choose one step before the year ends.">
+  <title>A letter from future you | Valentina Scipione</title>
+  <meta name="description" content="A 15 minute reflection to help you work out what needs to change in your work and life, and choose one small step towards it.">
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="../styles.css">
   <style>
@@ -52,10 +52,10 @@
           <p class="creds"><span>ICF Associate Certified Coach (ACC)</span></p>
         </div>
       </div>
-      <h1>Don't take this lost feeling into January</h1>
-      <p class="lead">A short reflection to help you work out what needs to change in your work and life, and choose one step before the year ends.</p>
+      <h1>A letter from future you</h1>
+      <p class="lead">A 15 minute reflection to help you work out what needs to change in your work and life, and choose one small step towards it.</p>
       <p class="intro">Maybe you feel lost. Maybe you still enjoy your work, but something about it no longer fits. Or you simply know you want something to change, without knowing what.</p>
-      <p class="format">About 15 minutes. Your answers stay in this browser tab and are not sent to me.</p>
+      <p class="format">Your answers stay in this browser tab and are not sent to me.</p>
     </div>
   </header>
 
@@ -64,7 +64,7 @@
     <section class="wrap">
       <p class="step-label">Step 1 &middot; Picture next year</p>
       <h2>Take one minute before you start</h2>
-      <p class="imagine">Imagine it's a Monday morning one year from now, in December 2027. You wake up, and you're actually looking forward to the week ahead. What's different? What are you doing, who's around you, how do you feel? Keep that picture in mind. We'll come back to it.</p>
+      <p class="imagine">Imagine it's a Monday morning one year from now, in <span class="next-date">December 2027</span>. You wake up, and you're actually looking forward to the week ahead. What's different? What are you doing, who's around you, how do you feel? Keep that picture in mind. We'll come back to it.</p>
     </section>
 
     <section class="wrap" style="padding-top: 8px;">
@@ -115,12 +115,12 @@
 
       <section class="wrap" style="padding-top: 8px;">
         <p class="step-label">Step 4 &middot; Your letter</p>
-        <h2>A letter from future You</h2>
-        <p class="hint">Remember the picture from the start? Here is one version of what next December could look like. Keep what fits, and change what doesn't.</p>
+        <h2>Here is your letter</h2>
+        <p class="hint">Remember the picture from the start? Here is one version of what your life could look like a year from now. Keep what fits, and change what doesn't.</p>
         <div class="letter">
           <p class="salute">Dear you,</p>
           <p id="letter-body"></p>
-          <p>It all started with something small, in December 2026, when I&hellip;</p>
+          <p>It all started with something small, in <span class="this-date">December 2026</span>, when I&hellip;</p>
           <ul class="options" id="options"></ul>
           <p class="sign">With love,<br>You, one year from now</p>
         </div>
@@ -129,7 +129,7 @@
       <section class="wrap" style="padding-top: 8px;">
         <p class="step-label">Step 5 &middot; Make it real</p>
         <h2>Put your first step in your calendar</h2>
-        <p>Pick the step that feels right in your letter, choose a day and a time before the year ends, and add it to your calendar. Small is perfect. This is where January starts.</p>
+        <p>Pick the step that feels right in your letter, choose a day and a time in the next few days, and add it to your calendar. Small is perfect. This is where it starts.</p>
         <div class="calendar">
           <input type="date" id="date" aria-label="Date for your first step">
           <input type="time" id="time" value="19:00" aria-label="Time for your first step">
@@ -187,7 +187,7 @@
         letter: "This year, I started using my voice. I said the thing I had been holding back, and I practised saying no when I meant it. Bit by bit, my work started to feel more like mine.",
         steps: [
           ["said no to one request, kindly and clearly", "Say no once"],
-          ["booked a 1:1 with my manager to talk about next year", "Book a 1:1 about next year"],
+          ["booked a 1:1 with my manager to talk about what I want next", "Book a 1:1 about what I want"],
           ["turned off work notifications for one evening", "Notifications off for the evening"],
           ["practised the conversation I had been avoiding, out loud, with a friend", "Practise the conversation"]
         ]
@@ -217,9 +217,9 @@
         letter: "This year, I became clearer about what I contribute and what I want to ask for. I stopped leaving every conversation about my progression for another day.",
         steps: [
           ["asked my manager what I need to show to reach the next level", "Ask about the next level"],
-          ["shared one win from this year with my team or my manager", "Share one win"],
+          ["shared one recent win with my team or my manager", "Share one win"],
           ["asked two colleagues what they see as my strengths", "Ask about my strengths"],
-          ["added this year's achievements to my CV or LinkedIn", "Update my CV"]
+          ["added my latest achievements to my CV or LinkedIn", "Update my CV"]
         ]
       },
       purpose: {
@@ -263,7 +263,7 @@
         steps: [
           ["put one thing I love back in my calendar, even for 30 minutes", "Time for something I love"],
           ["asked for help with one thing, so I could have an hour just for myself", "An hour just for me"],
-          ["planned one thing for the holidays that has nothing to do with work", "Plan something for the holidays"],
+          ["planned one thing for the weekend that has nothing to do with work", "Plan something for the weekend"],
           ["tried finishing work at my chosen time on one day", "Finish work on time"]
         ]
       }
@@ -363,6 +363,16 @@
       $("choose").scrollIntoView({ behavior: "smooth", block: "center" });
     });
 
+    // Dates in the text always follow today's date, so the page works all year
+    (function () {
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var now = new Date();
+      var thisDate = months[now.getMonth()] + " " + now.getFullYear();
+      var nextDate = months[now.getMonth()] + " " + (now.getFullYear() + 1);
+      document.querySelectorAll(".this-date").forEach(function (e) { e.textContent = thisDate; });
+      document.querySelectorAll(".next-date").forEach(function (e) { e.textContent = nextDate; });
+    })();
+
     (function () {
       var d = new Date(); d.setDate(d.getDate() + 1);
       $("date").value = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
@@ -391,7 +401,7 @@
       var start = new Date(+parts[0], +parts[1] - 1, +parts[2], +t[0], +t[1]);
       return {
         title: "My first step: " + label,
-        details: full.charAt(0).toUpperCase() + full.slice(1) + "\n\nSmall is perfect. This is where January starts.",
+        details: full.charAt(0).toUpperCase() + full.slice(1) + "\n\nSmall is perfect. This is where it starts.",
         start: fmt(start),
         end: fmt(new Date(start.getTime() + 30 * 60000))
       };
