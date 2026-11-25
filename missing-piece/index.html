@@ -22,6 +22,8 @@
     .button.secondary, button.button.secondary { background: #fff; color: var(--plum); border: 2px solid var(--plum); }
     .button.secondary:hover, .button.secondary.active { background: var(--blush); color: var(--plum-dark); }
     .button.small { padding: 8px 18px; font-size: 0.95rem; }
+    .choices { align-items: center; }
+    .choices .button.active { box-shadow: 0 0 0 3px var(--blush-deep); }
     .piece-name { font-family: var(--serif); font-size: clamp(2rem, 6vw, 2.6rem); color: var(--plum); margin: 0 0 12px; }
     .piece-question { font-family: var(--serif); font-size: 1.2rem; color: var(--plum-dark); }
     .questions { counter-reset: q; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
@@ -68,27 +70,23 @@
     <section class="wrap" style="padding-top: 8px;">
       <p class="step-label">Step 2 &middot; Notice where you are today</p>
       <h2>Now come back to today</h2>
-      <p class="hint">Which of these feel true for you right now? Select every statement that sounds like you, and go with your first reaction. The statements are informed by research on motivation and working life.</p>
+      <p>Which of these feel true for you right now? <strong>Choose as many as you like</strong>, and go with your first reaction.</p>
+      <p class="hint">The statements are informed by research on motivation and working life.</p>
       <ul class="ticks" id="ticks">
-        <li><label><input type="checkbox" data-piece="direction"> My role keeps changing, and I'm not sure where I fit anymore.</label></li>
-        <li><label><input type="checkbox" data-piece="life"> I keep saying "when things calm down", and they never do.</label></li>
-        <li><label><input type="checkbox" data-piece="energy"> By Monday, I'm already counting the days to the weekend.</label></li>
-        <li><label><input type="checkbox" data-piece="voice"> There is something I have wanted to say at work for months.</label></li>
-        <li><label><input type="checkbox" data-piece="purpose"> I do my job well, and I'm no longer sure what for.</label></li>
-        <li><label><input type="checkbox" data-piece="recognition"> I'm still waiting for the promotion I was told was coming.</label></li>
-        <li><label><input type="checkbox" data-piece="direction"> I'm worried about losing my job, and I don't know how to prepare.</label></li>
-        <li><label><input type="checkbox" data-piece="life"> Between work, family and everything else, there is little time that feels like mine.</label></li>
-        <li><label><input type="checkbox" data-piece="energy"> Even easy things now take me forever to start.</label></li>
-        <li><label><input type="checkbox" data-piece="direction"> AI is changing my work, and I'm not sure what that means for my future.</label></li>
-        <li><label><input type="checkbox" data-piece="voice"> I say yes to things I would like to say no to.</label></li>
-        <li><label><input type="checkbox" data-piece="recognition"> I do more than my role asks, and it often goes unnoticed.</label></li>
-        <li><label><input type="checkbox" data-piece="purpose"> The next step up the ladder doesn't feel worth the climb anymore.</label></li>
-        <li><label><input type="checkbox" data-piece="energy"> I enjoy my work, but the workload and expectations keep growing.</label></li>
+        <li><label><input type="checkbox" data-piece="direction"> AI is changing my work, and I'm worried about what that means for my future.</label></li>
         <li><label><input type="checkbox" data-piece="life"> There is a hobby or passion I have not touched in a long time.</label></li>
-        <li><label><input type="checkbox" data-piece="direction"> Part of me is ready to explore something new, and I keep putting it off.</label></li>
-        <li><label><input type="checkbox" data-piece="recognition"> I feel overlooked when new opportunities come up.</label></li>
+        <li><label><input type="checkbox" data-piece="connection"> I feel lonely at work, even with people all around me.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> I enjoy my work, but the workload and expectations keep growing.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> There is something I have wanted to say at work for months.</label></li>
         <li><label><input type="checkbox" data-piece="purpose"> I can't remember the last time work made me proud.</label></li>
-        <li><label><input type="checkbox" data-piece="voice"> Decisions about my work keep being made without me.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I'm still waiting for the promotion I was told was coming.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> Even easy things now take me forever to start.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> Between work, family and everything else, there is little time that feels like mine.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> I say yes to things I would like to say no to.</label></li>
+        <li><label><input type="checkbox" data-piece="connection"> I see my friends far less than I would like.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I do more than my role asks, and it often goes unnoticed.</label></li>
+        <li><label><input type="checkbox" data-piece="direction"> Part of me is ready to explore something new, and I keep putting it off.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> The next step up the ladder doesn't feel worth the climb anymore.</label></li>
       </ul>
       <button class="button" type="button" id="show">Show me what came up</button>
       <p class="hint hidden" id="none">Select at least one statement first.</p>
@@ -96,10 +94,6 @@
       <div class="hidden" id="choose">
         <p style="margin-top: 24px;" id="touched"></p>
         <div class="choices" id="choices"></div>
-        <div class="hidden" id="others-wrap">
-          <p class="hint" style="margin-top: 18px;">Does something else feel more important right now?</p>
-          <div class="choices" id="others"></div>
-        </div>
       </div>
     </section>
 
@@ -140,7 +134,7 @@
 
       <section class="wrap" style="padding-top: 8px;">
         <p class="step-label">Step 5 &middot; Make it real</p>
-        <h2>Put your step in your calendar</h2>
+        <h2>Put your first step in your calendar</h2>
         <p>Pick the step that feels right in your letter, choose a day and a time before the year ends, and add it to your calendar. Small is perfect. This is where January starts.</p>
         <div class="calendar">
           <input type="date" id="date" aria-label="Date for your first step">
@@ -234,6 +228,18 @@
           ["thought back to my three proudest moments at work and noticed what they had in common", "Remember my proudest moments"]
         ]
       },
+      connection: {
+        name: "Connection",
+        meaning: "You may be missing people around you who really get you, at work or outside it.",
+        question: "Who would you like to feel closer to?",
+        letter: "This year, I found my people again. I have a few colleagues and friends I can really talk to, and work feels less lonely than it did.",
+        steps: [
+          ["invited one colleague for a coffee or a walk", "Coffee with a colleague"],
+          ["messaged an old friend or colleague I miss", "Message someone I miss"],
+          ["went to one meetup or community event", "Go to a meetup"],
+          ["told someone at work how I am really doing", "Tell someone how I am"]
+        ]
+      },
       life: {
         name: "Life",
         meaning: "You may want more room for life outside work.",
@@ -296,12 +302,18 @@
       $("piece-name").scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
-    function makeButton(key, small) {
+    function makeButton(key, main) {
       var b = document.createElement("button");
-      b.type = "button"; b.className = "button secondary" + (small ? " small" : ""); b.textContent = PIECES[key].name; b.dataset.key = key;
+      b.type = "button"; b.className = main ? "button" : "button secondary small"; b.textContent = PIECES[key].name; b.dataset.key = key;
       b.addEventListener("click", function () { showResult(key); });
       return b;
     }
+
+    function updateCount() {
+      var n = document.querySelectorAll("#ticks input:checked").length;
+      $("show").textContent = n ? "Show me what came up (" + n + " selected)" : "Show me what came up";
+    }
+    document.querySelectorAll("#ticks input").forEach(function (i) { i.addEventListener("change", updateCount); });
 
     $("show").addEventListener("click", function () {
       var counts = {};
@@ -316,15 +328,14 @@
       var top = keys.filter(function (k) { return counts[k] === max; });
       var others = keys.filter(function (k) { return counts[k] < max; }).slice(0, 2);
       var box = $("choices"); box.innerHTML = "";
-      top.forEach(function (k) { box.appendChild(makeButton(k, false)); });
-      var ob = $("others"); ob.innerHTML = "";
-      others.forEach(function (k) { ob.appendChild(makeButton(k, true)); });
-      $("others-wrap").classList.toggle("hidden", others.length === 0);
-      $("touched").textContent = top.length === 1
-        ? "Your answers point most to " + listNames(top) + "."
+      top.forEach(function (k) { box.appendChild(makeButton(k, true)); });
+      others.forEach(function (k) { box.appendChild(makeButton(k, false)); });
+      var first = top.length === 1
+        ? "Your answers point most to " + listNames(top) + ". Would you like to explore it today?"
         : "Your answers point most to " + listNames(top) + ". Which would you like to explore today?";
+      $("touched").textContent = first + (others.length ? " Or does something else feel more important right now?" : "");
       $("choose").classList.remove("hidden");
-      if (top.length === 1) { showResult(top[0]); } else { $("choose").scrollIntoView({ behavior: "smooth", block: "center" }); }
+      $("choose").scrollIntoView({ behavior: "smooth", block: "center" });
     });
 
     (function () {
