@@ -43,6 +43,8 @@ p { margin: 0 0 16px; }
 .hero-badge + .eyebrow { padding-right: 120px; }
 .eyebrow { display: flex; gap: 14px; align-items: center; margin-bottom: 24px; }
 .eyebrow img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; }
+a.eyebrow { width: fit-content; text-decoration: none; }
+a.eyebrow:hover .name { text-decoration: underline; text-underline-offset: 3px; }
 .name { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.04em; margin: 0; color: var(--plum); }
 .role { margin: 2px 0 0; color: var(--muted); font-size: 0.95rem; }
 .creds { margin: 2px 0 0; color: var(--plum); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.01em; }
