@@ -21,6 +21,7 @@
     button.button { border: none; font: inherit; font-weight: 600; cursor: pointer; }
     .button.secondary, button.button.secondary { background: #fff; color: var(--plum); border: 2px solid var(--plum); }
     .button.secondary:hover, .button.secondary.active { background: var(--blush); color: var(--plum-dark); }
+    .button.small { padding: 8px 18px; font-size: 0.95rem; }
     .piece-name { font-family: var(--serif); font-size: clamp(2rem, 6vw, 2.6rem); color: var(--plum); margin: 0 0 12px; }
     .piece-question { font-family: var(--serif); font-size: 1.2rem; color: var(--plum-dark); }
     .questions { counter-reset: q; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
@@ -67,7 +68,7 @@
     <section class="wrap" style="padding-top: 8px;">
       <p class="step-label">Step 2 &middot; Notice where you are today</p>
       <h2>Now come back to today</h2>
-      <p class="hint">Which of these feel true for you right now? Select every statement that sounds like you, and go with your first reaction.</p>
+      <p class="hint">Which of these feel true for you right now? Select every statement that sounds like you, and go with your first reaction. The statements are informed by research on motivation and working life.</p>
       <ul class="ticks" id="ticks">
         <li><label><input type="checkbox" data-piece="direction"> My role keeps changing, and I'm not sure where I fit anymore.</label></li>
         <li><label><input type="checkbox" data-piece="life"> I keep saying "when things calm down", and they never do.</label></li>
@@ -95,6 +96,10 @@
       <div class="hidden" id="choose">
         <p style="margin-top: 24px;" id="touched"></p>
         <div class="choices" id="choices"></div>
+        <div class="hidden" id="others-wrap">
+          <p class="hint" style="margin-top: 18px;">Does something else feel more important right now?</p>
+          <div class="choices" id="others"></div>
+        </div>
       </div>
     </section>
 
@@ -105,7 +110,6 @@
         <p class="piece-name" id="piece-name"></p>
         <p id="piece-meaning"></p>
         <p class="piece-question" id="piece-question"></p>
-        <p class="hint">A reflection tool informed by research on motivation and working life.</p>
       </section>
 
       <section class="wrap" style="padding-top: 8px;">
@@ -141,7 +145,10 @@
         <div class="calendar">
           <input type="date" id="date" aria-label="Date for your first step">
           <input type="time" id="time" value="19:00" aria-label="Time for your first step">
-          <button class="button" type="button" id="ics">Add to my calendar</button>
+        </div>
+        <div class="calendar">
+          <button class="button" type="button" id="gcal">Add to Google Calendar</button>
+          <button class="button secondary" type="button" id="ics">Apple, Outlook and others</button>
         </div>
         <p class="hint hidden" id="pick-first">Choose one step in your letter first, or write your own.</p>
       </section>
@@ -263,7 +270,7 @@
 
     function showResult(key) {
       var p = PIECES[key];
-      document.querySelectorAll("#choices button").forEach(function (b) { b.classList.toggle("active", b.dataset.key === key); });
+      document.querySelectorAll("#choose button").forEach(function (b) { b.classList.toggle("active", b.dataset.key === key); });
       $("piece-name").textContent = p.name;
       $("piece-meaning").textContent = p.meaning;
       $("piece-question").textContent = p.question;
@@ -289,6 +296,13 @@
       $("piece-name").scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
+    function makeButton(key, small) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "button secondary" + (small ? " small" : ""); b.textContent = PIECES[key].name; b.dataset.key = key;
+      b.addEventListener("click", function () { showResult(key); });
+      return b;
+    }
+
     $("show").addEventListener("click", function () {
       var counts = {};
       var boxes = document.querySelectorAll("#ticks input:checked");
@@ -298,19 +312,19 @@
       boxes.forEach(function (b) { counts[b.dataset.piece] = (counts[b.dataset.piece] || 0) + 1; });
       var order = Object.keys(PIECES);
       var keys = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a] || order.indexOf(a) - order.indexOf(b); });
-      var box = $("choices");
-      box.innerHTML = "";
-      keys.forEach(function (k) {
-        var b = document.createElement("button");
-        b.type = "button"; b.className = "button secondary"; b.textContent = PIECES[k].name; b.dataset.key = k;
-        b.addEventListener("click", function () { showResult(k); });
-        box.appendChild(b);
-      });
-      $("touched").textContent = keys.length === 1
-        ? "Your answers touched on " + listNames(keys) + ". Tap it to explore it today."
-        : "Your answers touched on " + listNames(keys) + ". Which would you most like to explore today?";
+      var max = counts[keys[0]];
+      var top = keys.filter(function (k) { return counts[k] === max; });
+      var others = keys.filter(function (k) { return counts[k] < max; }).slice(0, 2);
+      var box = $("choices"); box.innerHTML = "";
+      top.forEach(function (k) { box.appendChild(makeButton(k, false)); });
+      var ob = $("others"); ob.innerHTML = "";
+      others.forEach(function (k) { ob.appendChild(makeButton(k, true)); });
+      $("others-wrap").classList.toggle("hidden", others.length === 0);
+      $("touched").textContent = top.length === 1
+        ? "Your answers point most to " + listNames(top) + "."
+        : "Your answers point most to " + listNames(top) + ". Which would you like to explore today?";
       $("choose").classList.remove("hidden");
-      $("choose").scrollIntoView({ behavior: "smooth", block: "center" });
+      if (top.length === 1) { showResult(top[0]); } else { $("choose").scrollIntoView({ behavior: "smooth", block: "center" }); }
     });
 
     (function () {
@@ -324,7 +338,7 @@
       return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + "T" + p(d.getHours()) + p(d.getMinutes()) + "00";
     }
 
-    $("ics").addEventListener("click", function () {
+    function getEvent() {
       var chosen = document.querySelector("#options input:checked");
       var full = "", label = "";
       if (chosen && chosen.value === "own") {
@@ -334,22 +348,39 @@
         full = chosen.value; label = chosen.dataset.label;
       }
       $("pick-first").classList.toggle("hidden", !!full);
-      if (!full) return;
-      var ds = $("date").value; if (!ds) return;
+      var ds = $("date").value;
+      if (!full || !ds) return null;
       var t = ($("time").value || "19:00").split(":");
       var parts = ds.split("-");
       var start = new Date(+parts[0], +parts[1] - 1, +parts[2], +t[0], +t[1]);
-      var end = new Date(start.getTime() + 30 * 60000);
-      var stepText = full.charAt(0).toUpperCase() + full.slice(1);
+      return {
+        title: "My first step: " + label,
+        details: full.charAt(0).toUpperCase() + full.slice(1) + "\n\nSmall is perfect. This is where January starts.",
+        start: fmt(start),
+        end: fmt(new Date(start.getTime() + 30 * 60000))
+      };
+    }
+
+    $("gcal").addEventListener("click", function () {
+      var e = getEvent(); if (!e) return;
+      var url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+        + "&text=" + encodeURIComponent(e.title)
+        + "&dates=" + e.start + "/" + e.end
+        + "&details=" + encodeURIComponent(e.details);
+      window.open(url, "_blank", "noopener");
+    });
+
+    $("ics").addEventListener("click", function () {
+      var e = getEvent(); if (!e) return;
       var ics = [
         "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//valentinascipione.com//first step//EN",
         "BEGIN:VEVENT",
         "UID:" + Date.now() + "@valentinascipione.com",
         "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z",
-        "DTSTART:" + fmt(start),
-        "DTEND:" + fmt(end),
-        "SUMMARY:" + esc("My first step: " + label),
-        "DESCRIPTION:" + esc(stepText + "\n\nSmall is perfect. This is where January starts."),
+        "DTSTART:" + e.start,
+        "DTEND:" + e.end,
+        "SUMMARY:" + esc(e.title),
+        "DESCRIPTION:" + esc(e.details),
         "END:VEVENT", "END:VCALENDAR"
       ].join("\r\n");
       var a = document.createElement("a");
