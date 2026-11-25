@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A letter from future You | Valentina Scipione</title>
+  <meta name="description" content="A 15 minute reflection to help you work out what needs to change in your work and life, and choose one small step towards it.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .step-label { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--plum); margin: 0 0 8px; }
+    .intro { font-size: 1.05rem; margin: 0 0 20px; }
+    .imagine { background: #fff; border-radius: var(--radius); padding: 24px 26px; font-family: var(--serif); font-size: 1.2rem; line-height: 1.6; color: var(--plum-dark); box-shadow: 0 4px 18px rgba(74, 24, 48, 0.06); }
+    .ticks { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 10px; }
+    .ticks label { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 2px solid transparent; border-radius: var(--radius); padding: 14px 16px; cursor: pointer; box-shadow: 0 2px 10px rgba(74, 24, 48, 0.05); transition: border-color 0.15s, background 0.15s; }
+    .ticks input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--plum); flex-shrink: 0; }
+    .ticks label:has(input:checked) { border-color: var(--plum); background: #fdf3f4; }
+    .hint { font-size: 0.95rem; color: var(--muted); }
+    .hidden { display: none; }
+    .choices { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    button.button { border: none; font: inherit; font-weight: 600; cursor: pointer; }
+    .button.secondary, button.button.secondary { background: #fff; color: var(--plum); border: 2px solid var(--plum); }
+    .button.secondary:hover, .button.secondary.active { background: var(--blush); color: var(--plum-dark); }
+    .button.small { padding: 8px 18px; font-size: 0.95rem; }
+    .choices { align-items: center; }
+    .choices .button.active { box-shadow: 0 0 0 3px var(--blush-deep); }
+    .piece-name { font-family: var(--serif); font-size: clamp(2rem, 6vw, 2.6rem); color: var(--plum); margin: 0 0 12px; }
+    .piece-question { font-family: var(--serif); font-size: 1.2rem; color: var(--plum-dark); }
+    .questions { counter-reset: q; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .questions li { counter-increment: q; background: #fff; border-radius: var(--radius); padding: 16px 18px 16px 56px; position: relative; }
+    .questions li::before { content: counter(q); position: absolute; left: 18px; top: 14px; font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--plum); }
+    .letter { background: #fffdf9; border: 1px solid var(--line); border-radius: 6px; padding: 32px 30px; font-family: var(--serif); font-size: 1.12rem; line-height: 1.7; box-shadow: 0 10px 30px rgba(74, 24, 48, 0.08); }
+    .letter .salute { font-size: 1.3rem; color: var(--plum-dark); margin-bottom: 18px; }
+    .letter .sign { margin-top: 22px; }
+    .options { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; font-family: var(--sans); font-size: 1rem; }
+    .options label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; cursor: pointer; }
+    .options label:has(input:checked) { background: var(--blush); }
+    .options input[type="radio"] { width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--plum); flex-shrink: 0; }
+    .own-step { display: block; width: 100%; margin-top: 8px; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+    .calendar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 14px; }
+    .calendar input { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">
+        <img src="../assets/valentina-portrait.jpg" alt="" width="64" height="64">
+        <div>
+          <p class="name">Valentina Scipione</p>
+          <p class="creds"><span>ICF Associate Certified Coach (ACC)</span></p>
+        </div>
+      </div>
+      <h1>A letter from future You</h1>
+      <p class="lead">A 15 minute reflection to help you work out what needs to change in your work and life, and choose one small step towards it.</p>
+      <p class="intro">Maybe you feel lost. Maybe you still enjoy your work, but something about it no longer fits. Or you simply know you want something to change in your life, without being sure what.</p>
+      <p class="format">Your answers stay in this browser tab and are not sent to me.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="wrap">
+      <p class="step-label">Step 1 &middot; Picture next year</p>
+      <h2>Take one minute before you start</h2>
+      <p class="imagine">Imagine it's a Monday morning one year from now, in <span class="next-date">December 2027</span>. You wake up, and you're actually looking forward to the week ahead. What's different? What are you doing, who's around you, how do you feel? Keep that picture in mind. We'll come back to it.</p>
+    </section>
+
+    <section class="wrap" style="padding-top: 8px;">
+      <p class="step-label">Step 2 &middot; Notice where you are today</p>
+      <h2>Now come back to today</h2>
+      <p>Which of these feel true for you right now? <strong>Choose as many as you like</strong>, and go with your first reaction.</p>
+      <p class="hint">The statements are informed by research on motivation and working life.</p>
+      <ul class="ticks" id="ticks">
+        <li><label><input type="checkbox" data-piece="direction"> AI is changing my work, and I'm worried about what that means for my future.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> There is a hobby or passion I have not touched in a long time.</label></li>
+        <li><label><input type="checkbox" data-piece="connection"> I feel lonely at work, even with people all around me.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> I enjoy my work, but the workload and expectations keep growing.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> There is something I have wanted to say at work for months.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> I can't remember the last time work made me proud.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I'm still waiting for the promotion I was told was coming.</label></li>
+        <li><label><input type="checkbox" data-piece="energy"> Even easy things now take me forever to start.</label></li>
+        <li><label><input type="checkbox" data-piece="life"> Between work, family and everything else, there is little time that feels like mine.</label></li>
+        <li><label><input type="checkbox" data-piece="voice"> I say yes to things I would like to say no to.</label></li>
+        <li><label><input type="checkbox" data-piece="connection"> I see my friends far less than I would like.</label></li>
+        <li><label><input type="checkbox" data-piece="recognition"> I do more than my role asks, and it often goes unnoticed.</label></li>
+        <li><label><input type="checkbox" data-piece="direction"> Part of me is ready to explore something new, and I keep putting it off.</label></li>
+        <li><label><input type="checkbox" data-piece="purpose"> The next step up the ladder doesn't feel worth the climb anymore.</label></li>
+      </ul>
+      <button class="button" type="button" id="show">Show me what came up</button>
+      <p class="hint hidden" id="none">Select at least one statement first.</p>
+
+      <div class="hidden" id="choose">
+        <p style="margin-top: 24px;" id="touched"></p>
+        <div class="choices" id="choices"></div>
+      </div>
+    </section>
+
+    <div id="result" class="hidden">
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">What you chose to explore</p>
+        <p class="piece-name" id="piece-name"></p>
+        <p id="piece-meaning"></p>
+        <p class="piece-question" id="piece-question"></p>
+      </section>
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Step 3 &middot; Reflect</p>
+        <h2>Five questions to sit with</h2>
+        <p class="hint">Take a minute with each one. Notice what comes up first.</p>
+        <ol class="questions" id="questions"></ol>
+      </section>
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Step 4 &middot; Your letter</p>
+        <h2>Here is your letter</h2>
+        <p class="hint">Remember the picture from the start? Here is one version of what your life could look like a year from now. Keep what fits, and change what doesn't.</p>
+        <div class="letter">
+          <p class="salute">Dear you,</p>
+          <p id="letter-body"></p>
+          <p>It all started with something small, in <span class="this-date">December 2026</span>, when I&hellip;</p>
+          <ul class="options" id="options"></ul>
+          <p class="sign">With love,<br>You, one year from now</p>
+        </div>
+      </section>
+
+      <section class="wrap" style="padding-top: 8px;">
+        <p class="step-label">Step 5 &middot; Make it real</p>
+        <h2>Put your first step in your calendar</h2>
+        <p>Pick the step that feels right in your letter, choose a day and a time in the next few days, and add it to your calendar. Small is perfect. This is where it starts.</p>
+        <div class="calendar">
+          <input type="date" id="date" aria-label="Date for your first step">
+          <input type="time" id="time" value="19:00" aria-label="Time for your first step">
+        </div>
+        <div class="calendar">
+          <button class="button" type="button" id="gcal">Add to Google Calendar</button>
+          <button class="button secondary" type="button" id="ics">Apple, Outlook and others</button>
+        </div>
+        <p class="hint hidden" id="pick-first">Choose one step in your letter first, or write your own.</p>
+      </section>
+
+      <div class="wrap">
+        <section class="cta">
+          <h2>Want some help thinking it through?</h2>
+          <p>We can talk about what came up, what you would like to change and whether coaching could help. The first chat is free and takes 30 minutes.</p>
+          <a class="button" href="https://cal.com/valentinascipione/free-chat">Book a free 30 minute chat</a>
+        </section>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      &copy; 2026 Valentina Scipione &middot; <a href="../impressum.html">Impressum</a> &middot; <a href="../datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    // Everything runs in the browser. Nothing is sent or stored.
+    var PIECES = {
+      energy: {
+        scope: "work and life",
+        cost: "What is it costing you to keep running on empty?",
+        ifKnew: "If you knew you had all the energy you need, what would you do with it?",
+        name: "Energy",
+        meaning: "You may be giving more energy than your work gives back, with little time to recover.",
+        question: "What would help you refill the tank?",
+        letter: "This year, I started looking after my energy. Some weeks are still full, and I have learned to protect a little time to recover. Evenings feel more like evenings again, and I notice the difference.",
+        steps: [
+          ["kept one evening free from work", "Evening off work"],
+          ["shortened or cancelled one meeting in my calendar", "Shorten one meeting"],
+          ["took a real lunch break, away from my desk", "Real lunch break"],
+          ["booked one day off just for me", "Book a day off"]
+        ]
+      },
+      voice: {
+        scope: "working life",
+        cost: "What is it costing you to keep these things unsaid?",
+        ifKnew: "If you knew your voice would be welcome, what would you say first?",
+        name: "Voice",
+        meaning: "You may have more to say about your work than you are saying right now.",
+        question: "What would you like to have more say in?",
+        letter: "This year, I started using my voice. I said the thing I had been holding back, and I practised saying no when I meant it. Bit by bit, my work started to feel more like mine.",
+        steps: [
+          ["said no to one request, kindly and clearly", "Say no once"],
+          ["booked a 1:1 with my manager to talk about what I want next", "Book a 1:1 about what I want"],
+          ["turned off work notifications for one evening", "Notifications off for the evening"],
+          ["practised the conversation I had been avoiding, out loud, with a friend", "Practise the conversation"]
+        ]
+      },
+      direction: {
+        scope: "working life",
+        cost: "What is it costing you to wait and see what happens?",
+        ifKnew: "If you knew you could handle whatever changes come, what would you start exploring?",
+        name: "Direction",
+        meaning: "Your work may be changing faster than you can decide what you want from it, and the future can feel uncertain.",
+        question: "What would help you feel more prepared for what comes next?",
+        letter: "This year, I stopped waiting to see where the changes would take me. AI kept changing things, and I chose what to keep, what to learn and where I might go next. The future still has questions, and I feel more ready for them.",
+        steps: [
+          ["built something small and fun with AI, just for me, like a travel planner or a reading tracker", "Build something fun with AI"],
+          ["gave 30 minutes to a skill I was curious about, just for the joy of it", "30 minutes on a new skill"],
+          ["asked someone a few steps ahead of me how they handle the change", "Ask someone ahead of me"],
+          ["named the three parts of my work I want to keep, whatever happens", "Name what I want to keep"]
+        ]
+      },
+      recognition: {
+        scope: "working life",
+        cost: "What is it costing you to wait to be noticed?",
+        ifKnew: "If you knew your work was truly valued, what would you ask for?",
+        name: "Recognition",
+        meaning: "You may be giving a lot, with too little of it being seen.",
+        question: "What would you like people to notice about your work?",
+        letter: "This year, I became clearer about what I contribute and what I want to ask for. I stopped leaving every conversation about my progression for another day.",
+        steps: [
+          ["asked my manager what I need to show to reach the next level", "Ask about the next level"],
+          ["shared one recent win with my team or my manager", "Share one win"],
+          ["asked two colleagues what they see as my strengths", "Ask about my strengths"],
+          ["added my latest achievements to my CV or LinkedIn", "Update my CV"]
+        ]
+      },
+      purpose: {
+        scope: "working life",
+        cost: "What is it costing you to keep going without a clear reason?",
+        ifKnew: "If you knew your work could make a difference, what would you make it about?",
+        name: "Purpose",
+        meaning: "The reason behind your work may have faded for now.",
+        question: "When did your work last feel worth it, and what was different then?",
+        letter: "This year, I reconnected with why my work matters to me. Some Mondays still feel like Mondays, but more often I can point to something that made me proud.",
+        steps: [
+          ["had a coffee with someone whose work I admire, and asked what keeps them going", "Coffee with someone I admire"],
+          ["asked someone who uses my work what difference it makes to them", "Ask about my impact"],
+          ["spent one hour on an idea I had been curious about", "One hour on an idea"],
+          ["thought back to my three proudest moments at work and noticed what they had in common", "Remember my proudest moments"]
+        ]
+      },
+      connection: {
+        scope: "work and life",
+        cost: "What is it costing you to keep everything to yourself?",
+        ifKnew: "If you knew people would be happy to hear from you, who would you contact first?",
+        name: "Connection",
+        meaning: "You may be missing people around you who really get you, at work or outside it.",
+        question: "Who would you like to feel closer to?",
+        letter: "This year, I found my people again. I have a few colleagues and friends I can really talk to, and work feels less lonely than it did.",
+        steps: [
+          ["invited one colleague for a coffee or a walk", "Coffee with a colleague"],
+          ["messaged an old friend or colleague I miss", "Message someone I miss"],
+          ["went to one meetup or community event", "Go to a meetup"],
+          ["told someone at work how I am really doing", "Tell someone how I am"]
+        ]
+      },
+      life: {
+        scope: "life",
+        cost: "What is it costing you to keep putting your own life on hold?",
+        ifKnew: "If you knew you had one hour a day just for you, what would you do with it?",
+        name: "Life",
+        meaning: "You may want more room for life outside work.",
+        question: "What would you like that space to be for?",
+        letter: "This year, I made more room for my life. Slowly at first: one evening, then another. I picked up something I love again, and the people around me get more of the version of me with energy left at the end of the day.",
+        steps: [
+          ["put one thing I love back in my calendar, even for 30 minutes", "Time for something I love"],
+          ["asked for help with one thing, so I could have an hour just for myself", "An hour just for me"],
+          ["planned one thing for the weekend that has nothing to do with work", "Plan something for the weekend"],
+          ["tried finishing work at my chosen time on one day", "Finish work on time"]
+        ]
+      }
+    };
+
+    function $(id) { return document.getElementById(id); }
+
+    function listNames(keys) {
+      var names = keys.map(function (k) { return PIECES[k].name.toLowerCase(); });
+      if (names.length === 1) return names[0];
+      return names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
+    }
+
+    function addOption(ul, value, text, label) {
+      var li = document.createElement("li");
+      var lab = document.createElement("label");
+      var input = document.createElement("input");
+      input.type = "radio"; input.name = "step"; input.value = value; input.dataset.label = label;
+      lab.appendChild(input);
+      lab.appendChild(document.createTextNode(" " + text));
+      li.appendChild(lab);
+      ul.appendChild(li);
+      return { li: li, label: lab, input: input };
+    }
+
+    function showResult(key) {
+      var p = PIECES[key];
+      document.querySelectorAll("#choose button").forEach(function (b) { b.classList.toggle("active", b.dataset.key === key); });
+      $("piece-name").textContent = p.name;
+      $("piece-meaning").textContent = p.meaning;
+      $("piece-question").textContent = p.question;
+      $("letter-body").textContent = p.letter;
+      var qs = [
+        "If nothing changed in your " + p.scope + " over the next year, how would you feel?",
+        p.cost,
+        p.ifKnew,
+        "What would you like to do more of, and less of?",
+        "If you quiet your fear for a moment, what does your gut tell you to do first?"
+      ];
+      var ol = $("questions");
+      ol.innerHTML = "";
+      qs.forEach(function (q) { var li = document.createElement("li"); li.textContent = q; ol.appendChild(li); });
+      var ul = $("options");
+      ul.innerHTML = "";
+      p.steps.forEach(function (s) { addOption(ul, s[0], s[0], s[1]); });
+
+      // "My own step" option with a short text field
+      var own = addOption(ul, "own", "", "");
+      own.label.removeChild(own.label.lastChild);
+      var span = document.createElement("span");
+      span.style.flex = "1";
+      span.appendChild(document.createTextNode("chose my own first step:"));
+      var text = document.createElement("input");
+      text.type = "text"; text.className = "own-step"; text.id = "own-text"; text.maxLength = 120;
+      text.placeholder = "Write your step here";
+      text.addEventListener("focus", function () { own.input.checked = true; });
+      span.appendChild(text);
+      own.label.appendChild(span);
+
+      $("result").classList.remove("hidden");
+      $("piece-name").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function makeButton(key, main) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = main ? "button" : "button secondary small"; b.textContent = PIECES[key].name; b.dataset.key = key;
+      b.addEventListener("click", function () { showResult(key); });
+      return b;
+    }
+
+    function updateCount() {
+      var n = document.querySelectorAll("#ticks input:checked").length;
+      $("show").textContent = n ? "Show me what came up (" + n + " selected)" : "Show me what came up";
+    }
+    document.querySelectorAll("#ticks input").forEach(function (i) { i.addEventListener("change", updateCount); });
+
+    $("show").addEventListener("click", function () {
+      var counts = {};
+      var boxes = document.querySelectorAll("#ticks input:checked");
+      $("none").classList.toggle("hidden", boxes.length > 0);
+      $("result").classList.add("hidden");
+      if (!boxes.length) { $("choose").classList.add("hidden"); return; }
+      boxes.forEach(function (b) { counts[b.dataset.piece] = (counts[b.dataset.piece] || 0) + 1; });
+      var order = Object.keys(PIECES);
+      var keys = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a] || order.indexOf(a) - order.indexOf(b); });
+      var max = counts[keys[0]];
+      var top = keys.filter(function (k) { return counts[k] === max; });
+      var others = keys.filter(function (k) { return counts[k] < max; }).slice(0, 2);
+      var box = $("choices"); box.innerHTML = "";
+      top.forEach(function (k) { box.appendChild(makeButton(k, true)); });
+      others.forEach(function (k) { box.appendChild(makeButton(k, false)); });
+      var first = top.length === 1
+        ? "Your answers point most to " + listNames(top) + ". Would you like to explore it today?"
+        : "Your answers point most to " + listNames(top) + ". Which would you like to explore today?";
+      $("touched").textContent = first + (others.length ? " Or does something else feel more important right now?" : "");
+      $("choose").classList.remove("hidden");
+      $("choose").scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    // Dates in the text always follow today's date, so the page works all year
+    (function () {
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var now = new Date();
+      var thisDate = months[now.getMonth()] + " " + now.getFullYear();
+      var nextDate = months[now.getMonth()] + " " + (now.getFullYear() + 1);
+      document.querySelectorAll(".this-date").forEach(function (e) { e.textContent = thisDate; });
+      document.querySelectorAll(".next-date").forEach(function (e) { e.textContent = nextDate; });
+    })();
+
+    (function () {
+      var d = new Date(); d.setDate(d.getDate() + 1);
+      $("date").value = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    })();
+
+    function esc(t) { return t.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n"); }
+    function fmt(d) {
+      function p(n) { return String(n).padStart(2, "0"); }
+      return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + "T" + p(d.getHours()) + p(d.getMinutes()) + "00";
+    }
+
+    function getEvent() {
+      var chosen = document.querySelector("#options input:checked");
+      var full = "", label = "";
+      if (chosen && chosen.value === "own") {
+        full = ($("own-text").value || "").trim();
+        label = full.length > 40 ? full.slice(0, 40).trim() + "\u2026" : full;
+      } else if (chosen) {
+        full = chosen.value; label = chosen.dataset.label;
+      }
+      $("pick-first").classList.toggle("hidden", !!full);
+      var ds = $("date").value;
+      if (!full || !ds) return null;
+      var t = ($("time").value || "19:00").split(":");
+      var parts = ds.split("-");
+      var start = new Date(+parts[0], +parts[1] - 1, +parts[2], +t[0], +t[1]);
+      return {
+        title: "My first step: " + label,
+        details: full.charAt(0).toUpperCase() + full.slice(1) + "\n\nSmall is perfect. This is where it starts.",
+        start: fmt(start),
+        end: fmt(new Date(start.getTime() + 30 * 60000))
+      };
+    }
+
+    $("gcal").addEventListener("click", function () {
+      var e = getEvent(); if (!e) return;
+      var url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+        + "&text=" + encodeURIComponent(e.title)
+        + "&dates=" + e.start + "/" + e.end
+        + "&details=" + encodeURIComponent(e.details);
+      window.open(url, "_blank", "noopener");
+    });
+
+    $("ics").addEventListener("click", function () {
+      var e = getEvent(); if (!e) return;
+      var ics = [
+        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//valentinascipione.com//first step//EN",
+        "BEGIN:VEVENT",
+        "UID:" + Date.now() + "@valentinascipione.com",
+        "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z",
+        "DTSTART:" + e.start,
+        "DTEND:" + e.end,
+        "SUMMARY:" + esc(e.title),
+        "DESCRIPTION:" + esc(e.details),
+        "END:VEVENT", "END:VCALENDAR"
+      ].join("\r\n");
+      var a = document.createElement("a");
+      a.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+      a.download = "MyFirstStep.ics";
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  </script>
+</body>
+</html>
