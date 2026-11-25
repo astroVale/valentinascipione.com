@@ -109,14 +109,8 @@
       <section class="wrap" style="padding-top: 8px;">
         <p class="step-label">Step 3 &middot; Reflect</p>
         <h2>Five questions to sit with</h2>
-        <p class="hint">Take a minute with each one. There's no need to write anything down.</p>
-        <ol class="questions">
-          <li>When does this feeling show up most in my week, and what does it make me want to do?</li>
-          <li>If this came back, what would it give me that really matters to me?</li>
-          <li>What does my mind keep telling me about why now isn't the right time?</li>
-          <li>What small discomfort would I be willing to feel to move towards it, like an awkward conversation or an evening without catching up on work?</li>
-          <li>What's the smallest step I could take before the year ends?</li>
-        </ol>
+        <p class="hint">Take a minute with each one. Notice what comes up first.</p>
+        <ol class="questions" id="questions"></ol>
       </section>
 
       <section class="wrap" style="padding-top: 8px;">
@@ -169,6 +163,9 @@
     // Everything runs in the browser. Nothing is sent or stored.
     var PIECES = {
       energy: {
+        scope: "work and life",
+        cost: "What is it costing you to keep running on empty?",
+        ifKnew: "If you knew you had all the energy you need, what would you do with it?",
         name: "Energy",
         meaning: "You may be giving more energy than your work gives back, with little time to recover.",
         question: "What would help you refill the tank?",
@@ -181,6 +178,9 @@
         ]
       },
       voice: {
+        scope: "working life",
+        cost: "What is it costing you to keep these things unsaid?",
+        ifKnew: "If you knew your voice would be welcome, what would you say first?",
         name: "Voice",
         meaning: "You may have more to say about your work than you are saying right now.",
         question: "What would you like to have more say in?",
@@ -193,6 +193,9 @@
         ]
       },
       direction: {
+        scope: "working life",
+        cost: "What is it costing you to wait and see what happens?",
+        ifKnew: "If you knew you could handle whatever changes come, what would you start exploring?",
         name: "Direction",
         meaning: "Your work may be changing faster than you can decide what you want from it, and the future can feel uncertain.",
         question: "What would help you feel more prepared for what comes next?",
@@ -205,6 +208,9 @@
         ]
       },
       recognition: {
+        scope: "working life",
+        cost: "What is it costing you to wait to be noticed?",
+        ifKnew: "If you knew your work was truly valued, what would you ask for?",
         name: "Recognition",
         meaning: "You may be giving a lot, with too little of it being seen.",
         question: "What would you like people to notice about your work?",
@@ -217,6 +223,9 @@
         ]
       },
       purpose: {
+        scope: "working life",
+        cost: "What is it costing you to keep going without a clear reason?",
+        ifKnew: "If you knew your work could make a difference, what would you make it about?",
         name: "Purpose",
         meaning: "The reason behind your work may have faded for now.",
         question: "When did your work last feel worth it, and what was different then?",
@@ -229,6 +238,9 @@
         ]
       },
       connection: {
+        scope: "work and life",
+        cost: "What is it costing you to keep everything to yourself?",
+        ifKnew: "If you knew people would be happy to hear from you, who would you contact first?",
         name: "Connection",
         meaning: "You may be missing people around you who really get you, at work or outside it.",
         question: "Who would you like to feel closer to?",
@@ -241,6 +253,9 @@
         ]
       },
       life: {
+        scope: "life",
+        cost: "What is it costing you to keep putting your own life on hold?",
+        ifKnew: "If you knew you had one hour a day just for you, what would you do with it?",
         name: "Life",
         meaning: "You may want more room for life outside work.",
         question: "What would you like that space to be for?",
@@ -281,6 +296,16 @@
       $("piece-meaning").textContent = p.meaning;
       $("piece-question").textContent = p.question;
       $("letter-body").textContent = p.letter;
+      var qs = [
+        "If nothing changed in your " + p.scope + " over the next year, how would you feel?",
+        p.cost,
+        p.ifKnew,
+        "What would you like to do more of, and less of?",
+        "If you quiet your fear for a moment, what does your gut tell you to do first?"
+      ];
+      var ol = $("questions");
+      ol.innerHTML = "";
+      qs.forEach(function (q) { var li = document.createElement("li"); li.textContent = q; ol.appendChild(li); });
       var ul = $("options");
       ul.innerHTML = "";
       p.steps.forEach(function (s) { addOption(ul, s[0], s[0], s[1]); });
